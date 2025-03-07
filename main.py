@@ -17,10 +17,10 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
 # Загрузка изображений
-PLAYER_IMAGE = pygame.image.load("tank_images/player_tank.png")
-BOT_IMAGE_1 = pygame.image.load("tank_images/bot_tank_1.png")
-BOT_IMAGE_2 = pygame.image.load("tank_images/bot_tank_2.png")
-BOT_IMAGE_3 = pygame.image.load("tank_images/bot_tank_3.png")
+PLAYER_IMAGE = pygame.image.load("player_tank.png")
+BOT_IMAGE_1 = pygame.image.load("bot_tank_1.png")
+BOT_IMAGE_2 = pygame.image.load("bot_tank_2.png")
+BOT_IMAGE_3 = pygame.image.load("bot_tank_3.png")
 
 # Масштабирование изображений
 PLAYER_IMAGE = pygame.transform.scale(PLAYER_IMAGE, (50, 50))
