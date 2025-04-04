@@ -1,37 +1,30 @@
 import pygame
 import random
 
-# Инициализация Pygame
 pygame.init()
 
-# Параметры окна
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("11b WAR")
 
-# Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-# Загрузка изображений
 PLAYER_IMAGE = pygame.image.load("player_tank.png")
 BOT_IMAGE_1 = pygame.image.load("bot_tank_1.png")
 BOT_IMAGE_2 = pygame.image.load("bot_tank_2.png")
 BOT_IMAGE_3 = pygame.image.load("bot_tank_3.png")
 
-# Масштабирование изображений
 PLAYER_IMAGE = pygame.transform.scale(PLAYER_IMAGE, (50, 50))
 BOT_IMAGE_1 = pygame.transform.scale(BOT_IMAGE_1, (50, 50))
 BOT_IMAGE_2 = pygame.transform.scale(BOT_IMAGE_2, (50, 50))
 BOT_IMAGE_3 = pygame.transform.scale(BOT_IMAGE_3, (50, 50))
 
-# Шрифт
 font = pygame.font.Font(None, 36)
 
-# Игрок
 class Player:
     def __init__(self):
         self.image = PLAYER_IMAGE
@@ -59,7 +52,6 @@ class Player:
         for bullet in self.bullets:
             bullet.draw(surface)
 
-# Враги
 class Enemy:
     def __init__(self, x, y, image):
         self.image = image
@@ -89,7 +81,6 @@ class Enemy:
         for bullet in self.bullets:
             bullet.draw(surface)
 
-# Пули
 class Bullet:
     def __init__(self, x, y, speed):
         self.rect = pygame.Rect(x, y, 5, 10)
@@ -101,7 +92,6 @@ class Bullet:
     def draw(self, surface):
         pygame.draw.rect(surface, RED, self.rect)
 
-# Кнопка
 class Button:
     def __init__(self, text, x, y, width, height, color, text_color):
         self.rect = pygame.Rect(x, y, width, height)
@@ -117,13 +107,11 @@ class Button:
 
     def is_clicked(self, mouse_pos):
         return self.rect.collidepoint(mouse_pos)
-
-# Респавн врагов
+        
 def respawn_enemies(count):
     enemy_images = [BOT_IMAGE_1, BOT_IMAGE_2, BOT_IMAGE_3]
     return [Enemy(random.randint(0, WIDTH), random.randint(-HEIGHT, 0), random.choice(enemy_images)) for _ in range(count)]
 
-# Основной игровой цикл
 def main():
     clock = pygame.time.Clock()
     running = True
@@ -136,7 +124,6 @@ def main():
     play_button = Button("Play", WIDTH // 2 - 75, HEIGHT // 2 - 50, 150, 50, GREEN, BLACK)
     retry_button = Button("Retry", WIDTH // 2 - 75, HEIGHT // 2 + 90, 150, 50, GREEN, RED)
 
-    # Инициализация джойстика
     pygame.joystick.init()
     joystick = None
     if pygame.joystick.get_count() > 0:
